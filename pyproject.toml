@@ -64,8 +64,8 @@ prod = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/andre428/bha_scraper_manager"
-Repository = "https://github.com/andre428/bha_scraper_manager"
+Homepage = "https://github.com/andre428/bha-racing-data-analytics.git"
+Repository = "https://github.com/andre428/bha-racing-data-analytics.git"
 
 # ============================================================================
 # Hatchling Configuration
@@ -162,7 +162,7 @@ pythonVersion = "3.14"  # Minimum supported
 typeCheckingMode = "standard"
 
 # Include patterns
-include = ["scraper", "tests", "test_pipeline.py"]
+include = ["scraper", "tests"]
 exclude = [
     "**/__pycache__",
     "**/.venv",

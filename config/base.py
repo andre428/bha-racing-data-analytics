@@ -25,8 +25,19 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-later")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME", "horse_racing_data"),
+        "USER": os.environ.get("DB_USER", "zaafiel"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "Shrewdly-Edge-Enviably9-Sniff"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
+    }
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +53,6 @@ INSTALLED_APPS = [
     # Local
     "racing",
     "api",
-    "frontend",
 ]
 
 MIDDLEWARE = [
@@ -107,15 +117,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR
 STATICFILES_DIRS = [
-    BASE_DIR / "frontend" / "static",
+    BASE_DIR / "static",
 ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery Configuration
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
 
 # REST Framework Configuration
 REST_FRAMEWORK = {
